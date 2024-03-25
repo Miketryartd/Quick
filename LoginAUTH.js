@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -11,7 +11,6 @@ const firebaseConfig = {
           appId: "1:607731414177:web:d43b1d2194c349b4aface0"
 };
 
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
@@ -19,48 +18,51 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase();
 
 // Function to handle form submission
-document.getElementById('signupForm').addEventListener('submit', function(event) {
+document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent form submission
 
     // Retrieve form field values
-    const email = document.getElementById('Email-signup').value;
-    const username = document.getElementById('User-signup').value;
-    const password = document.getElementById('Userpass-signup').value;
-    const birthDate = document.getElementById('Userdate-signup').value;
-    const UserFirstName = document.getElementById('UserFirstName').value;
-    const UserMiddleInitial = document.getElementById('UserMiddleInitial').value;
-    const UserLastName = document.getElementById('UserLastName').value;
-    const UserAbbreviation = document.getElementById('UserAbbreviation').value;
-    const UserOCCUPATION = document.getElementById('UserOccupation').value;
+    const username = document.getElementById('User-login').value;
+    const password = document.getElementById('Userpass-login').value;
+    const email = document.getElementById('Email-login').value;
     const UserPIN = document.querySelector(' [data-value="User18PIN" ] ').value;
-    const SELECT = document.getElementById('Select').value;
+    const UserPHONE = document.getElementById('PhoneNumber').value;
  
+
     // Check if any field is empty
-    if (email.trim() === '' || username.trim() === '' || password.trim() === '' || birthDate.trim() === '') {
-        alert('Please fill out all fields');
+    if (username.trim() === '' || password.trim() === '') {
+        const ALLERRORS = document.querySelectorAll('[data-ALL="inps"]');
+        ALLERRORS.forEach(inps => {
+              inps.style.border = '1px solid red';
+        })
         return;
+    } else {
+        const ALLERRORS = document.querySelectorAll('[data-ALL="inps"]');
+        ALLERRORS.forEach(inps => {
+            inps.style.border = '1px solid rgba(0, 0, 0, 0.113)';
+        })
     }
 
-    // Check if username already exists in the database
+    // Check if username exists in the database
     const userRef = ref(db, 'users/' + username);
-    set(userRef, {
-        UserFirstName: UserFirstName,
-        UserMiddleInitial: UserMiddleInitial,
-        UserLastName: UserLastName,
-        UserAbbreviation: UserAbbreviation,
-        SELECT: SELECT,
-        UserOCCUPATION: UserOCCUPATION,
-        email: email,
-        birthDate: birthDate,
-        username: username,
-        password: password,   
-        UserPIN: UserPIN
-    }).then(() => {
-        alert('User registered successfully!');
-        // Redirect to login page
-        window.location.href = 'home.html';
+    get(userRef).then((snapshot) => {
+        if (snapshot.exists()) {
+            const userData = snapshot.val();
+            if (userData.password === password) {
+                // Password matches, login successful
+                alert('Login successful!');
+                // Redirect to home page or perform any other actions you need
+                window.location.href = 'home.html';
+            } else {
+                // Password does not match
+                alert('Incorrect password. Please try again.');
+            }
+        } else {
+            // Username does not exist
+            alert('Username does not exist. Please sign up.');
+        }
     }).catch((error) => {
-        console.error("Error writing document: ", error);
+        console.error("Error getting document:", error);
         alert('An error occurred. Please try again later.');
     });
 });
