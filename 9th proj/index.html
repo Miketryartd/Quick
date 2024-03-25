@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="auth.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Quick | Sign up</title>
+</head>
+<body>
+    <!--Top-Section-->
+<section>
+    <ul>
+        <li><h1>Q<span>uick</span></h1></li>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contacts</a></li>
+        <li><a href="login.html">Log in</a></li>
+    </ul>
+</section>
+
+    <!--EndTop-->
+
+    <!--Sign up Form-->
+    <div class="parentContainer">
+        <form method="GET" action="login.html"  id="signupForm">
+            <ul>
+                <li><h1>Sign up<i class='bx bxs-key'></i></h1></li>
+                <li><i class='bx bx-envelope' ></i><input type="email" placeholder="Example@gmail.com" id="Email-signup"><ul id="INPUTERROR"><li><p>please put something</p></li></ul></li>
+                <li><i class='bx bx-calendar'></i><input type="date" id="Userdate-signup"><ul id="INPUTERROR"><li><p>please put something</p></li></ul></li>
+                <li><i class='bx bx-user' ></i><input type="text" placeholder="John doe.." id="User-signup"><ul id="INPUTERROR"><li><p>please put something</p></li></ul></li>
+                <li><i class='bx bx-lock-alt'></i><input type="password" placeholder="Password..." id="Userpass-signup"><ul id="INPUTERROR"><li><p>please put something</p></li></ul></li>
+                <li><div id="importantSection"><input type="text" data-value="UserMIDDLE" placeholder="Full Middle-Initial"><input type="text" id="pin" placeholder="6-Letter Pin"  data-value="User6PIN"><input type="color" id="UserColor-signup" data-value="UserCOLOR"></div></li>
+                <li><p>Note: You should <strong>REMEMBER</strong> these.</p></li>
+                <li><input type="file" id="ImgUpload-signup" onsubmit="fileFunction()"><ul id="INPUTERROR"><li><p>please put something</p></li></ul></li>
+                <li><button id="button-signup" value="submit">Sign up</button></li>
+                <li><p>Already have an account? <a href="login.html">Log in</a></p></li>
+            </ul>
+
+
+
+        </form>
+    </div>
+    
+
+
+    <!--Sign up End-->
+      <script src="SignupAUTH.js" type="module"></script>
+   <script src="LoginAUTH.js"></script>
+
+   
+ 
+</body>
+</html>
