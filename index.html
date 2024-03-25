@@ -26,13 +26,22 @@
         <form method="GET" action="login.html"  id="signupForm">
             <ul>
                 <li><h1>Sign up<i class='bx bxs-key'></i></h1></li>
-                <li><i class='bx bx-envelope' ></i><input type="email" placeholder="Example@gmail.com" id="Email-signup"><ul id="INPUTERROR"><li><p>please put something</p></li></ul></li>
-                <li><i class='bx bx-calendar'></i><input type="date" id="Userdate-signup"><ul id="INPUTERROR"><li><p>please put something</p></li></ul></li>
-                <li><i class='bx bx-user' ></i><input type="text" placeholder="John doe.." id="User-signup"><ul id="INPUTERROR"><li><p>please put something</p></li></ul></li>
-                <li><i class='bx bx-lock-alt'></i><input type="password" placeholder="Password..." id="Userpass-signup"><ul id="INPUTERROR"><li><p>please put something</p></li></ul></li>
-                <li><div id="importantSection"><input type="text" data-value="UserMIDDLE" placeholder="Full Middle-Initial"><input type="text" id="pin" placeholder="6-Letter Pin"  data-value="User6PIN"><input type="color" id="UserColor-signup" data-value="UserCOLOR"></div></li>
-                <li><p>Note: You should <strong>REMEMBER</strong> these.</p></li>
-                <li><input type="file" id="ImgUpload-signup" onsubmit="fileFunction()"><ul id="INPUTERROR"><li><p>please put something</p></li></ul></li>
+                <li><i class='bx bx-user' ></i><input type="text" placeholder="First Name" id="UserFirstName" data-ALL="inps"> <input type="text" placeholder="Middle Initial" id="UserMiddleInitial" data-ALL="inps"> <input type="text" placeholder="Last Name" id="UserLastName" data-ALL="inps"> <input type="text" placeholder="Abbreviation" id="UserAbbreviation" data-ALL="inps"></li>
+                <li><i class='bx bx-user-check' ></i><select id="Select" data-ALL="inps">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Others">Prefer not to say</option>
+                </select><input type="text" placeholder="Occupation" id="UserOccupation" data-ALL="inps"></li>
+                <li><i class='bx bx-envelope' ></i><input type="email"  data-ALL="inps" placeholder="Example@gmail.com" id="Email-signup"></li>
+                <li><i class='bx bx-calendar'></i><input type="date" id="Userdate-signup"  data-ALL="inps"></li>
+                <li><i class='bx bx-user-circle' ></i><input type="text" placeholder="Username.." id="User-signup"  data-ALL="inps"></li>
+                <li><i class='bx bx-lock-alt'></i><input type="password" placeholder="Password..." id="Userpass-signup"  data-ALL="inps"></li>
+                <li><i class='bx bx-phone' ></i><input type="tel" placeholder="Phone number(optional)" id="PhoneNumber"  data-ALL="inps"></li>
+                <li>
+              <i class='bx bx-shield' ></i><input type="text" id="pin" placeholder="18-Letter Pin"  data-value="User18PIN"  data-ALL="inps"></li>
+               
+                <li><p>Note: You should <strong>REMEMBER YOUR PIN</strong>.</p></li>
+                <li><i class='bx bxs-file-image' ></i><input type="file" id="ImgUpload-signup" onsubmit="fileFunction()"  data-ALL="inps"></li>
                 <li><button id="button-signup" value="submit">Sign up</button></li>
                 <li><p>Already have an account? <a href="login.html">Log in</a></p></li>
             </ul>
@@ -46,7 +55,7 @@
 
     <!--Sign up End-->
       <script src="SignupAUTH.js" type="module"></script>
-   <script src="LoginAUTH.js"></script>
+   <script src="LoginAUTH.js" type="module"></script>
 
    
  
