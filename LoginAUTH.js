@@ -27,10 +27,11 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     const email = document.getElementById('Email-login').value;
     const UserPIN = document.querySelector(' [data-value="User18PIN" ] ').value;
     const UserPHONE = document.getElementById('PhoneNumber').value;
+    const ALL = {username, password, email, UserPHONE, UserPIN};
  
 
     // Check if any field is empty
-    if (username.trim() === '' || password.trim() === '') {
+    if (username.trim() === '' || password.trim() === '' ||  UserPIN.trim() === '' || email.trim() === '') {
         const ALLERRORS = document.querySelectorAll('[data-ALL="inps"]');
         ALLERRORS.forEach(inps => {
               inps.style.border = '1px solid red';
@@ -48,14 +49,14 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     get(userRef).then((snapshot) => {
         if (snapshot.exists()) {
             const userData = snapshot.val();
-            if (userData.password === password) {
+            if (userData.password === password && userData.UserPIN === UserPIN) {
                 // Password matches, login successful
                 alert('Login successful!');
                 // Redirect to home page or perform any other actions you need
                 window.location.href = 'home.html';
             } else {
                 // Password does not match
-                alert('Incorrect password. Please try again.');
+                alert('Incorrect password or PIN. Please try again.');
             }
         } else {
             // Username does not exist
