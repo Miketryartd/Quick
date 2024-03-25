@@ -34,8 +34,9 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
     const UserOCCUPATION = document.getElementById('UserOccupation').value;
     const UserPIN = document.querySelector(' [data-value="User18PIN" ] ').value;
     const SELECT = document.getElementById('Select').value;
+    const UserFILE = document.getElementById('ImgUpload-signup').value;
     // Check if any field is empty
-    if (email.trim() === '' || username.trim() === '' || password.trim() === '' || birthDate.trim() === '' || UserFirstName.trim() === '' || UserPIN.trim() === '' || UserAbbreviation.trim() === '' || UserLastName === '' || UserMiddleInitial.trim() === '' || UserOCCUPATION.trim() === '') {
+    if (email.trim() === '' || username.trim() === '' || password.trim() === '' || birthDate.trim() === '' || UserFirstName.trim() === '' || UserPIN.trim() === ''  || UserLastName === '' || UserMiddleInitial.trim() === '' || UserOCCUPATION.trim() === '') {
     
      const ALLERRORS = document.querySelectorAll('[data-ALL="inps"]');
      ALLERRORS.forEach(inps => {
