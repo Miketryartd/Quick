@@ -35,24 +35,20 @@ section ul li a:hover{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 200px;
+    margin-top: 100px;
 
 }
 .parentContainer form{
    
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.144);   
-   
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.144);   
+   border-radius: 6px;
   width: 600px;
  
 }
-.parentContainer #INPUTERROR{
-    display:none ;
-    color: red;
-    font-size: 0.7rem;
-}
+
 .parentContainer form ul li{
     list-style: none;
-    padding: 7px;
+    padding: 7px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,13 +56,24 @@ section ul li a:hover{
     
     
 }
+.parentContainer form ul li i{
+    font-size: 24px;
+}
 .parentContainer form input{
     width: 100%;
     flex:1;
     outline: none;
- 
+    
     border-color: rgba(0, 0, 0, 0.113);
     height: 35px;
+}
+.parentContainer form ul li select{
+    flex:1;
+    outline: none;
+    padding: 0px 20px;
+ 
+    border-color: rgba(0, 0, 0, 0.113);
+    height: 39px;
 }
 .parentContainer form button{
     height: 35px;
@@ -91,9 +98,5 @@ border-radius: 4px;
     transform: 0.2s ease;
     text-decoration: underline;
 }
-.parentContainer form ul #importantSection #UserColor-signup {
 
-width: 101%;
-
-}
 /*endForms*/
