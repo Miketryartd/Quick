@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -34,20 +34,19 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
     const UserOCCUPATION = document.getElementById('UserOccupation').value;
     const UserPIN = document.querySelector(' [data-value="User18PIN" ] ').value;
     const SELECT = document.getElementById('Select').value;
-    const UserFILE = document.getElementById('ImgUpload-signup').value;
     // Check if any field is empty
-    if (email.trim() === '' || username.trim() === '' || password.trim() === '' || birthDate.trim() === '' || UserFirstName.trim() === '' || UserPIN.trim() === ''  || UserLastName === '' || UserMiddleInitial.trim() === '' || UserOCCUPATION.trim() === '') {
+    if (email.trim() === '' || username.trim() === '' || password.trim() === '' || birthDate.trim() === '' || UserFirstName.trim() === '' || UserPIN.trim() === '' || UserAbbreviation.trim() === '' || UserLastName === '' || UserMiddleInitial.trim() === '' || UserOCCUPATION.trim() === '') {
     
      const ALLERRORS = document.querySelectorAll('[data-ALL="inps"]');
      ALLERRORS.forEach(inps => {
-           inps.style.border = '1px solid red';
+           inps.style.border =  '1px solid red';
      })
     
       return;
     } else {
         const ALLERRORS = document.querySelectorAll('[data-ALL="inps"]');
         ALLERRORS.forEach(inps => {
-              inps.style.border = 'border: 2px solid rgba(0, 0, 0, 0.152)';
+              inps.style.border = '1px solid rgba(0, 0, 0, 0.113)';
         })
     }
 
@@ -61,25 +60,37 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
 
 
     // Check if username already exists in the database
-    const userRef = ref(db, 'users/' + username);
-    set(userRef, {
-        UserFirstName: UserFirstName,
-        UserMiddleInitial: UserMiddleInitial,
-        UserLastName: UserLastName,
-        UserAbbreviation: UserAbbreviation,
-        SELECT: SELECT,
-        UserOCCUPATION: UserOCCUPATION,
-        email: email,
-        birthDate: birthDate,
-        username: username,
-        password: password,   
-        UserPIN: UserPIN
-    }).then(() => {
-        alert('User registered successfully!');
-        // Redirect to login page
-        window.location.href = 'login.html';
-    }).catch((error) => {
-        console.error("Error writing document: ", error);
-        alert('An error occurred. Please try again later.');
-    });
+  // Check if username already exists in the database
+const userRef = ref(db, 'users/' + username);
+get(userRef).then((snapshot) => {
+    if (snapshot.exists()) {
+        // Username already exists, display error message
+        alert('Username already exists. Please choose a different username.');
+    } else {
+        // Username does not exist, proceed with user registration
+        set(userRef, {
+            UserFirstName: UserFirstName,
+            UserMiddleInitial: UserMiddleInitial,
+            UserLastName: UserLastName,
+            UserAbbreviation: UserAbbreviation,
+            Gender: SELECT,
+            UserOCCUPATION: UserOCCUPATION,
+            email: email,
+            birthDate: birthDate,
+            username: username,
+            password: password,   
+            UserPIN: UserPIN
+        }).then(() => {
+            // Redirect to login page
+            window.location.href = 'login.html';
+        }).catch((error) => {
+            console.error("Error writing document: ", error);
+            alert('An error occurred. Please try again later.');
+        });
+    }
+}).catch((error) => {
+    console.error("Error checking username existence: ", error);
+    alert('An error occurred. Please try again later.');
+});
+
 });
