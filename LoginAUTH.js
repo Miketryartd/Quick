@@ -23,11 +23,18 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
     event.preventDefault(); // Prevent form submission
 
     // Retrieve form field values
-    const email = document.getElementById('Email-login').value;
-    const username = document.getElementById('User-login').value;
-    const password = document.getElementById('Userpass-login').value;
-   
-
+    const email = document.getElementById('Email-signup').value;
+    const username = document.getElementById('User-signup').value;
+    const password = document.getElementById('Userpass-signup').value;
+    const birthDate = document.getElementById('Userdate-signup').value;
+    const UserFirstName = document.getElementById('UserFirstName').value;
+    const UserMiddleInitial = document.getElementById('UserMiddleInitial').value;
+    const UserLastName = document.getElementById('UserLastName').value;
+    const UserAbbreviation = document.getElementById('UserAbbreviation').value;
+    const UserOCCUPATION = document.getElementById('UserOccupation').value;
+    const UserPIN = document.querySelector(' [data-value="User18PIN" ] ').value;
+    const SELECT = document.getElementById('Select').value;
+ 
     // Check if any field is empty
     if (email.trim() === '' || username.trim() === '' || password.trim() === '' || birthDate.trim() === '') {
         alert('Please fill out all fields');
@@ -37,10 +44,17 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
     // Check if username already exists in the database
     const userRef = ref(db, 'users/' + username);
     set(userRef, {
-        username: username,
+        UserFirstName: UserFirstName,
+        UserMiddleInitial: UserMiddleInitial,
+        UserLastName: UserLastName,
+        UserAbbreviation: UserAbbreviation,
+        SELECT: SELECT,
+        UserOCCUPATION: UserOCCUPATION,
         email: email,
         birthDate: birthDate,
-        password: password
+        username: username,
+        password: password,   
+        UserPIN: UserPIN
     }).then(() => {
         alert('User registered successfully!');
         // Redirect to login page
